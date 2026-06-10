@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Ed Cooper — Trader & Investor</title>
+<title>Ed Cooper | Trader & Investor</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preload" as="image" href="assets/hero-forest.jpg?v=2" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Dark (pine) theme — default */
+    /* Dark (pine) theme · default */
     --bg:#0D1410;
     --surface:#131C16;
     --surface-2:#18241C;
@@ -171,6 +171,17 @@
     display:flex;flex-direction:column;justify-content:flex-end;
     padding:0 48px 0;overflow:hidden;
   }
+  @media (min-width:841px){
+    /* leave room below the fold line for the proof strip on laptops/desktops */
+    .hero{min-height:calc(100svh - 102px)}
+  }
+  @media (min-width:841px) and (max-height:860px){
+    /* shorter laptop screens: compact the hero so the proof strip stays in view */
+    .hero-content{padding-top:9vh}
+    .hero h1{font-size:clamp(56px,8.5vw,118px);margin-bottom:26px}
+    .hero-lede{padding-bottom:38px}
+    .hero-eyebrow{margin-bottom:24px}
+  }
   .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:#0D1410}
   .hero-media .para{position:absolute;inset:-6% 0;will-change:transform}
   .hero-media .img{
@@ -284,7 +295,7 @@
   .img-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.16);transition:transform 2s var(--ease) .1s}
   .img-frame.in img{transform:scale(1)}
 
-  /* ================= CHAPTER I — ABOUT ================= */
+  /* ================= CHAPTER I · ABOUT ================= */
   .about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:96px;align-items:center;margin-top:80px}
   @media (max-width:980px){.about-grid{grid-template-columns:1fr;gap:56px}}
   .about-grid .img-frame{aspect-ratio:3/4}
@@ -309,7 +320,7 @@
   .thesis-inner h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,5vw,72px);line-height:1.12;letter-spacing:-.012em;color:#F2EDE1}
   .thesis-inner h2 em{color:var(--accent)}
 
-  /* ================= CHAPTER II — PATHS ================= */
+  /* ================= CHAPTER II · PATHS ================= */
   .paths-intro{max-width:620px;color:var(--muted);font-size:17.5px;line-height:1.7;margin-top:30px;transition:color var(--theme-fade) ease}
   .paths{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:80px}
   @media (max-width:980px){.paths{grid-template-columns:1fr}}
@@ -355,7 +366,7 @@
     .float-cta .btn{padding:14px 22px}
   }
 
-  /* ================= CHAPTER III — REVIEWS ================= */
+  /* ================= CHAPTER III · REVIEWS ================= */
   .reviews-kicker{display:flex;align-items:center;gap:16px;margin-top:30px}
   .reviews-kicker .stars{color:var(--accent);letter-spacing:5px;font-size:15px}
   .reviews-kicker span:last-child{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:500}
@@ -382,7 +393,7 @@
   @keyframes reviewIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
   .reviews-more{display:flex;justify-content:center;margin-top:60px}
 
-  /* ================= CHAPTER IV — APPLY ================= */
+  /* ================= CHAPTER IV · APPLY ================= */
   .apply-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:start;margin-top:80px}
   @media (max-width:980px){.apply-grid{grid-template-columns:1fr;gap:56px}}
   .apply-side .big{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1.16;margin-bottom:28px}
@@ -483,10 +494,11 @@
   /* ================= FLOATING CTA ================= */
   .float-cta{
     position:fixed;right:30px;bottom:30px;z-index:120;
-    transform:translateY(140%);
-    transition:transform .7s var(--ease);
+    transform:translateY(200%);
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:transform .7s var(--ease), opacity .5s ease, visibility 0s linear .7s;
   }
-  .float-cta.visible{transform:translateY(0)}
+  .float-cta.visible{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .7s var(--ease), opacity .5s ease, visibility 0s linear 0s}
   @media (max-width:640px){.float-cta{right:16px;bottom:16px}}
 
   /* ================= REDUCED MOTION ================= */
@@ -545,7 +557,7 @@
       <span class="hl"><span><em>Cooper.</em></span></span>
     </h1>
     <div class="hero-lede">
-      <p>There's always money moving somewhere. I position for it across every major market — and teach traders and investors to <em>find it first</em>, think in probabilities, and act with conviction.</p>
+      <p>There's always money moving somewhere. I position for it across every major market, and teach traders and investors to <em>find it first</em>, think in probabilities, and act with conviction.</p>
       <div class="hero-ctas">
         <a href="#apply" class="btn btn-solid" data-magnetic><span class="bg"></span><span class="hover-fill"></span><span>Apply for coaching</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
         <a href="#services" class="btn btn-line" data-magnetic><span class="hover-fill"></span><span>Explore Alpha Circle</span></a>
@@ -562,12 +574,12 @@
   </div>
 </div>
 
-<!-- ================= CHAPTER I — THE APPROACH ================= -->
+<!-- ================= CHAPTER I · THE APPROACH ================= -->
 <section id="about" data-section-theme="light">
   <div class="container">
     <div class="chapter-head reveal">
       <span class="rule"></span>
-      <span class="label"><span class="roman">Chapter I</span> &nbsp;—&nbsp; The Approach</span>
+      <span class="label"><span class="roman">Chapter I</span> &nbsp;·&nbsp; The Approach</span>
     </div>
     <h2 class="section-title split-words">Position yourself <em>where the money is.</em></h2>
 
@@ -577,7 +589,7 @@
       </div>
       <div class="about-copy reveal">
         <div class="big">Trading and investing across markets, <em>and teaching others to do the same.</em></div>
-        <p>Anyone can make money in a bull market. The ones who <strong>keep it, and compound it,</strong> are the ones who know exactly what to do when the trend turns or the market goes quiet. Bull, bear, or sideways — <strong>there's money moving in all three</strong>, if you know how to position for it.</p>
+        <p>Anyone can make money in a bull market. The ones who <strong>keep it, and compound it,</strong> are the ones who know exactly what to do when the trend turns or the market goes quiet. Bull, bear, or sideways: <strong>there's money moving in all three</strong>, if you know how to position for it.</p>
         <p>That's what I teach, and why I do it: trading and investing, done properly, gives you <strong>control over your time, where you live, and how you build a life.</strong></p>
         <div class="about-sign">
           <span class="rule"></span>
@@ -593,16 +605,16 @@
   <div class="thesis-bg" data-parallax="0.22"></div>
   <div class="thesis-inner reveal">
     <span class="label">§ The Thesis</span>
-    <h2 class="split-words">Reading the psychology behind why markets move. <em>Staying one step ahead.</em></h2>
+    <h2 class="split-words">Trading the psychology behind why markets move. <em>Staying one step ahead.</em></h2>
   </div>
 </div>
 
-<!-- ================= CHAPTER II — WAYS TO WORK ================= -->
+<!-- ================= CHAPTER II · WAYS TO WORK ================= -->
 <section id="services" data-section-theme="dark">
   <div class="container">
     <div class="chapter-head reveal">
       <span class="rule"></span>
-      <span class="label"><span class="roman">Chapter II</span> &nbsp;—&nbsp; Ways to Work Together</span>
+      <span class="label"><span class="roman">Chapter II</span> &nbsp;·&nbsp; Ways to Work Together</span>
     </div>
     <h2 class="section-title split-words">Two paths. <em>One standard.</em></h2>
     <p class="paths-intro reveal">Work with me directly, or learn inside Data's Alpha Circle. Both are built on the same thing: knowing where the money is moving, and managing risk before chasing reward.</p>
@@ -659,12 +671,12 @@
   </div>
 </section>
 
-<!-- ================= CHAPTER III — IN THEIR WORDS ================= -->
+<!-- ================= CHAPTER III · IN THEIR WORDS ================= -->
 <section id="reviews" data-section-theme="light">
   <div class="container">
     <div class="chapter-head reveal">
       <span class="rule"></span>
-      <span class="label"><span class="roman">Chapter III</span> &nbsp;—&nbsp; In Their Words</span>
+      <span class="label"><span class="roman">Chapter III</span> &nbsp;·&nbsp; In Their Words</span>
     </div>
     <h2 class="section-title split-words">What members <em>say.</em></h2>
     <div class="reviews-kicker reveal">
@@ -680,12 +692,12 @@
   </div>
 </section>
 
-<!-- ================= CHAPTER IV — BEGIN ================= -->
+<!-- ================= CHAPTER IV · BEGIN ================= -->
 <section id="apply" data-section-theme="dark">
   <div class="container">
     <div class="chapter-head reveal">
       <span class="rule"></span>
-      <span class="label"><span class="roman">Chapter IV</span> &nbsp;—&nbsp; Begin</span>
+      <span class="label"><span class="roman">Chapter IV</span> &nbsp;·&nbsp; Begin</span>
     </div>
     <h2 class="section-title split-words">Apply for <em>1-on-1 coaching.</em></h2>
 
@@ -703,7 +715,7 @@
 
         <blockquote class="apply-quote">
           <p>“Exactly what I needed to continue improving as a trader, and as a person.”</p>
-          <cite>— Phillip, Alpha Circle member</cite>
+          <cite>Phillip, Alpha Circle member</cite>
         </blockquote>
 
         <p class="downsell">Not ready for one-on-one work? <a href="https://whop.com/datas-alpha-circle/gain-access-now/?a=edcooper" target="_blank" rel="noopener">Data's Alpha Circle</a> is the perfect place to start.</p>
@@ -741,7 +753,7 @@
             <div class="pills">
               <label><input type="radio" name="exp" value="new" />Complete Beginner</label>
               <label><input type="radio" name="exp" value="<1y" />Less than 1 year</label>
-              <label><input type="radio" name="exp" value="1-3y" />1–3 years</label>
+              <label><input type="radio" name="exp" value="1-3y" />1-3 years</label>
               <label><input type="radio" name="exp" value="3y+" />3+ years</label>
             </div>
           </div>
@@ -750,8 +762,8 @@
             <label>Portfolio Size (approx.)</label>
             <div class="pills">
               <label><input type="radio" name="size" value="<5k" />Under $5K</label>
-              <label><input type="radio" name="size" value="5-25k" />$5K–$25K</label>
-              <label><input type="radio" name="size" value="25-100k" />$25K–$100K</label>
+              <label><input type="radio" name="size" value="5-25k" />$5K-$25K</label>
+              <label><input type="radio" name="size" value="25-100k" />$25K-$100K</label>
               <label><input type="radio" name="size" value="100k+" />$100K+</label>
               <label><input type="radio" name="size" value="private" />Rather not say</label>
             </div>
@@ -795,7 +807,7 @@
   <div class="container reveal">
     <span class="label">§ A Final Word</span>
     <h2 class="split-words">The next move won't wait <em>for you to be ready.</em></h2>
-    <p>Start with a single session, or learn alongside 300+ members inside Data's Alpha Circle. The market is already moving — the only question is whether you're positioned for it.</p>
+    <p>Start with a single session, or learn alongside 300+ members inside Data's Alpha Circle. The market is already moving. The only question is whether you're positioned for it.</p>
     <div class="ctas">
       <a href="#apply" class="btn btn-solid" data-magnetic><span class="bg"></span><span class="hover-fill"></span><span>Apply for coaching</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       <a href="https://whop.com/datas-alpha-circle/gain-access-now/?a=edcooper" target="_blank" rel="noopener" class="btn btn-line" data-magnetic><span class="hover-fill"></span><span>Join Alpha Circle</span></a>
