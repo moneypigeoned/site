@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Ed Cooper — Trader & Investor</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preload" as="image" href="assets/hero-forest.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -62,11 +63,12 @@
   .serif{font-family:'Fraunces', serif;font-weight:300}
   em{font-family:'Fraunces', serif;font-style:italic;font-weight:300}
 
-  /* Fine grain */
+  /* Fine grain (cheap: no blend mode, off on mobile) */
   body::before{
-    content:'';position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.05;mix-blend-mode:overlay;
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.035;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  @media (max-width:840px){body::before{display:none}}
 
   .label{
     font-size:11px;letter-spacing:.32em;text-transform:uppercase;
@@ -169,15 +171,19 @@
     display:flex;flex-direction:column;justify-content:flex-end;
     padding:0 48px 0;overflow:hidden;
   }
-  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:#0D1410}
+  .hero-media .para{position:absolute;inset:-6% 0;will-change:transform}
   .hero-media .img{
-    position:absolute;inset:-4%;
-    background:url('assets/hero-forest.jpg') center 22%/cover no-repeat;
-    transform:scale(1.14);
-    transition:transform 3.4s var(--ease);
+    position:absolute;inset:0;
+    background:#0D1410 url('assets/hero-forest.jpg') center 45%/cover no-repeat;
+    transform:scale(1.07);
+    transition:transform 2.6s var(--ease);
     will-change:transform;
   }
-  .loaded .hero-media .img{transform:scale(1.02)}
+  .loaded .hero-media .img{transform:scale(1)}
+  @media (max-width:840px){
+    .hero-media .img{background-position:68% 45%;transform:scale(1.03)}
+  }
   .hero-media::after{
     content:'';position:absolute;inset:0;
     background:
@@ -231,9 +237,19 @@
   .hero-proof .k{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#9AA396;font-weight:500;line-height:1.5}
   @media (max-width:840px){
     .hero{padding:0 22px}
+    .hero-content{padding-top:15vh}
+    .hero-eyebrow{margin-bottom:24px}
+    .hero h1{font-size:clamp(72px,19vw,120px);margin-bottom:28px}
+    .hero-lede{padding-bottom:38px;gap:28px}
+    .hero-lede p{font-size:16px}
     .hero-proof{grid-template-columns:1fr}
     .hero-proof > div + div{padding-left:0;border-left:none;border-top:1px solid rgba(237,231,218,.12)}
-    .hero-proof > div{padding:18px 0}
+    .hero-proof > div{padding:15px 0}
+    .hero-proof .v{font-size:24px}
+  }
+  @media (max-width:520px){
+    .hero-ctas{width:100%;flex-direction:column}
+    .hero-ctas .btn{width:100%;justify-content:center}
   }
 
   /* ================= SECTION PRIMITIVES ================= */
@@ -322,6 +338,16 @@
   .path-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:30px;border-top:1px solid var(--line);transition:border-color var(--theme-fade) ease}
   .path-foot .price{font-family:'Fraunces',serif;font-size:24px;color:var(--muted)}
   .path-foot .price em{color:var(--accent);font-size:1.15em}
+  @media (max-width:520px){
+    .path-foot{flex-direction:column;align-items:stretch;text-align:center}
+    .path-foot .btn{justify-content:center}
+    .path-stats .v{font-size:30px}
+    .form-submit{flex-direction:column;align-items:stretch;text-align:center}
+    .form-submit .btn{justify-content:center}
+    .form-submit .fine{max-width:none}
+    .section-title{font-size:clamp(38px,11vw,60px)}
+    .float-cta .btn{padding:14px 22px}
+  }
 
   /* ================= CHAPTER III — REVIEWS ================= */
   .reviews-kicker{display:flex;align-items:center;gap:16px;margin-top:30px}
@@ -416,6 +442,15 @@
   .form-success p{color:var(--muted);max-width:420px;margin:0 auto}
   @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
+  /* ================= CLOSER ================= */
+  .closer{text-align:center;padding:170px 48px}
+  @media (max-width:840px){.closer{padding:110px 22px}}
+  .closer h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(40px,6vw,92px);line-height:1.06;letter-spacing:-.015em;max-width:1000px;margin:26px auto 26px}
+  .closer h2 em{color:var(--accent)}
+  .closer p{color:var(--muted);font-size:17px;max-width:480px;margin:0 auto 44px;transition:color var(--theme-fade) ease}
+  .closer .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  @media (max-width:520px){.closer .ctas{flex-direction:column}.closer .ctas .btn{justify-content:center}}
+
   /* ================= FOOTER ================= */
   footer{padding:90px 48px 44px;border-top:1px solid var(--line);transition:border-color var(--theme-fade) ease}
   @media (max-width:840px){footer{padding:64px 22px 30px}}
@@ -485,7 +520,7 @@
 
 <!-- ================= HERO ================= -->
 <header class="hero" data-section-theme="dark">
-  <div class="hero-media"><div class="img" data-parallax="0.12"></div></div>
+  <div class="hero-media"><div class="para" data-parallax="0.1"><div class="img"></div></div></div>
 
   <div class="hero-content">
     <div class="hero-eyebrow">
@@ -508,7 +543,7 @@
   <div class="hero-proof">
     <div><span class="v"><span data-countup data-target="4.9" data-decimals="1">4.9</span><em>★</em></span><span class="k">Member rating,<br>Data's Alpha Circle</span></div>
     <div><span class="v"><span data-countup data-target="300">300</span><em>+</em></span><span class="k">Members trading<br>together</span></div>
-    <div><span class="v"><span data-countup data-prefix="$" data-target="400" data-suffix="k">$400k</span><em>+</em></span><span class="k">Generated for<br>private clients</span></div>
+    <div><span class="v"><span data-countup data-prefix="$" data-target="500" data-suffix="k">$500k</span><em>+</em></span><span class="k">Generated for<br>private clients</span></div>
   </div>
 </header>
 
@@ -565,7 +600,7 @@
         <h3>1-on-1 <em>Trading Coaching</em></h3>
         <p class="desc">Private sessions over Google Meet. You bring your charts and your reasoning. I break down what's working, what isn't, and exactly why, then we fix it. You leave each session with a clearer framework, sharper execution, and homework to lock it in.<br><br>This isn't a lecture. It's hands-on teaching built around your specific mistakes and blind spots, one session at a time, until reading a market and acting on it becomes second nature.</p>
         <div class="path-stats">
-          <div><div class="v"><span data-countup data-prefix="$" data-target="400" data-suffix="k">$400k</span><em>+</em></div><div class="k">Generated for<br>private clients</div></div>
+          <div><div class="v"><span data-countup data-prefix="$" data-target="500" data-suffix="k">$500k</span><em>+</em></div><div class="k">Generated for<br>private clients</div></div>
           <div><div class="v">1:1</div><div class="k">Coaching<br>format</div></div>
         </div>
         <ul>
@@ -577,7 +612,7 @@
           <li>Open to any level, shaped to where you are</li>
         </ul>
         <div class="path-foot">
-          <div class="price"><em>$200</em> / hour</div>
+          <div class="price"><em>$300</em> / hour</div>
           <a href="#apply" class="btn btn-solid" data-magnetic><span class="bg"></span><span class="hover-fill"></span><span>Apply</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
         </div>
       </div>
@@ -642,7 +677,7 @@
     <div class="apply-grid">
       <div class="apply-side reveal">
         <div class="big">Tell me about <em>where you are</em> and what you want to fix.</div>
-        <p>Private 1-on-1 sessions over Google Meet. $200/hour. Every application is read personally. You'll hear back within a few days if we're a fit.</p>
+        <p>Private 1-on-1 sessions over Google Meet. $300/hour. Every application is read personally. You'll hear back within a few days if we're a fit.</p>
 
         <div class="steps">
           <div class="step"><div class="n">i.</div><div><strong>Apply</strong><span>Fill out the form. Takes about 3 minutes.</span></div></div>
@@ -728,6 +763,19 @@
           <p>Thanks. I read every one personally. Expect a reply from me within 48 hours.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSER ================= -->
+<section class="closer" data-section-theme="light">
+  <div class="container reveal">
+    <span class="label">§ A Final Word</span>
+    <h2 class="split-words">Patience compounds. <em>So does skill.</em></h2>
+    <p>Start with a single session, or learn alongside 300+ members inside the Circle. Either way, the work begins the same place: with a decision.</p>
+    <div class="ctas">
+      <a href="#apply" class="btn btn-solid" data-magnetic><span class="bg"></span><span class="hover-fill"></span><span>Apply for coaching</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <a href="https://whop.com/datas-alpha-circle/gain-access-now/?a=edcooper" target="_blank" rel="noopener" class="btn btn-line" data-magnetic><span class="hover-fill"></span><span>Join the Circle</span></a>
     </div>
   </div>
 </section>
@@ -825,58 +873,57 @@ let lenis = null;
   sections.forEach(s=>io.observe(s));
 })();
 
-/* ============ GUIDING RAIL ============ */
+/* ============ UNIFIED SCROLL ENGINE (single rAF, work only when scroll changes) ============ */
 (function(){
   const rail = document.getElementById('rail');
   const fill = document.getElementById('railFill');
-  if(!rail || !fill) return;
-  const links = [...rail.querySelectorAll('a[data-rail]')];
+  const links = rail ? [...rail.querySelectorAll('a[data-rail]')] : [];
   const targets = links.map(l => document.getElementById(l.dataset.rail)).filter(Boolean);
-
-  function update(){
-    const max = document.documentElement.scrollHeight - innerHeight;
-    fill.style.transform = `scaleY(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
-    rail.classList.toggle('visible', scrollY > innerHeight * 0.55);
-    // active node
-    let active = -1;
-    targets.forEach((t,i)=>{
-      if(t.getBoundingClientRect().top < innerHeight * 0.5) active = i;
-    });
-    links.forEach((l,i)=> l.classList.toggle('active', i === active));
-    requestAnimationFrame(update);
-  }
-  update();
-})();
-
-/* ============ NAV: shrink + hide on scroll down ============ */
-(function(){
   const nav = document.getElementById('topNav');
-  if(!nav) return;
-  let lastY = 0;
-  function onScroll(){
-    const y = scrollY;
-    nav.classList.toggle('scrolled', y > 60);
-    if(y > 500 && y > lastY + 4) nav.classList.add('hidden-nav');
-    else if(y < lastY - 4 || y < 200) nav.classList.remove('hidden-nav');
-    lastY = y;
-    requestAnimationFrame(onScroll);
-  }
-  onScroll();
-})();
-
-/* ============ FLOATING CTA ============ */
-(function(){
   const cta = document.getElementById('floatCta');
   const applySection = document.getElementById('apply');
-  if(!cta || !applySection) return;
-  function update(){
-    const past = scrollY > innerHeight * 0.85;
-    const applyRect = applySection.getBoundingClientRect();
-    const applyVisible = applyRect.top < innerHeight * 0.7 && applyRect.bottom > 0;
-    cta.classList.toggle('visible', past && !applyVisible);
-    requestAnimationFrame(update);
+  const isMobile = matchMedia('(max-width:840px)').matches;
+  const parallaxEls = (REDUCED || isMobile) ? [] : [...document.querySelectorAll('[data-parallax]')];
+
+  let lastY = -1, navLastY = 0;
+  function frame(){
+    const y = window.scrollY;
+    if(y !== lastY){
+      const vh = innerHeight;
+      // guiding rail
+      if(rail && fill){
+        const max = document.documentElement.scrollHeight - vh;
+        fill.style.transform = `scaleY(${max > 0 ? Math.min(1, y/max) : 0})`;
+        rail.classList.toggle('visible', y > vh * 0.55);
+        let active = -1;
+        targets.forEach((t,i)=>{ if(t.getBoundingClientRect().top < vh * 0.5) active = i; });
+        links.forEach((l,i)=> l.classList.toggle('active', i === active));
+      }
+      // nav shrink / hide
+      if(nav){
+        nav.classList.toggle('scrolled', y > 60);
+        if(y > 500 && y > navLastY + 4) nav.classList.add('hidden-nav');
+        else if(y < navLastY - 4 || y < 200) nav.classList.remove('hidden-nav');
+        navLastY = y;
+      }
+      // floating cta
+      if(cta && applySection){
+        const r = applySection.getBoundingClientRect();
+        cta.classList.toggle('visible', y > vh * 0.85 && !(r.top < vh * 0.7 && r.bottom > 0));
+      }
+      // parallax (desktop only, skip offscreen)
+      parallaxEls.forEach(el=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.bottom < -120 || rect.top > vh + 120) return;
+        const rate = parseFloat(el.dataset.parallax) || .2;
+        const mid = rect.top + rect.height/2 - vh/2;
+        el.style.transform = `translate3d(0, ${(-mid * rate).toFixed(1)}px, 0)`;
+      });
+      lastY = y;
+    }
+    requestAnimationFrame(frame);
   }
-  update();
+  frame();
 })();
 
 /* ============ MAGNETIC BUTTONS ============ */
@@ -953,23 +1000,6 @@ let lenis = null;
     });
   }, {threshold:.5});
   els.forEach(el=>io.observe(el));
-})();
-
-/* ============ PARALLAX ============ */
-(function(){
-  if(REDUCED) return;
-  const els = document.querySelectorAll('[data-parallax]');
-  function update(){
-    const vh = window.innerHeight;
-    els.forEach(el=>{
-      const rate = parseFloat(el.dataset.parallax) || .2;
-      const rect = el.getBoundingClientRect();
-      const mid = rect.top + rect.height/2 - vh/2;
-      el.style.transform = `translate3d(0, ${-mid * rate}px, 0)`;
-    });
-    requestAnimationFrame(update);
-  }
-  update();
 })();
 
 /* ============ CARD GLOW (mouse-tracked) ============ */
