@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Ed Cooper — Trader & Investor</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="preload" as="image" href="assets/hero-forest.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -175,15 +175,15 @@
   .hero-media .para{position:absolute;inset:-6% 0;will-change:transform}
   .hero-media .img{
     position:absolute;inset:0;
-    background:#0D1410 url('assets/hero-forest.jpg') center 48%/cover no-repeat;
+    background:#0D1410 url('assets/hero.jpg') center 55%/cover no-repeat;
     transform:scale(1.07);
     transition:transform 2.6s var(--ease);
     will-change:transform;
   }
   .loaded .hero-media .img{transform:scale(1)}
-  @media (min-aspect-ratio:2/1){.hero-media .img{background-position:center 40%}}
+  @media (min-aspect-ratio:2/1){.hero-media .img{background-position:center 50%}}
   @media (max-width:840px){
-    .hero-media .img{background-position:76% center;transform:scale(1.03)}
+    .hero-media .img{background-position:70% 45%;transform:scale(1.03)}
   }
   .hero-media::after{
     content:'';position:absolute;inset:0;
@@ -225,27 +225,30 @@
   .hero-lede p em{color:#F2EDE1;font-style:italic}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 
+  .proof-band{padding:0 48px;background:var(--bg);transition:background-color var(--theme-fade) ease}
+  @media (max-width:840px){.proof-band{padding:0 22px}}
   .hero-proof{
     position:relative;z-index:2;max-width:1500px;width:100%;margin:0 auto;
     display:grid;grid-template-columns:repeat(3,1fr);
-    border-top:1px solid rgba(237,231,218,.16);
-    opacity:0;transition:opacity 1.2s ease 2s;
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line);
+    opacity:0;transition:opacity 1.2s ease 2s, border-color var(--theme-fade) ease;
   }
   .loaded .hero-proof{opacity:1}
-  .hero-proof > div{padding:26px 0;display:flex;align-items:baseline;gap:14px}
-  .hero-proof > div + div{padding-left:36px;border-left:1px solid rgba(237,231,218,.12)}
-  .hero-proof .v{font-family:'Fraunces',serif;font-size:clamp(24px,2.6vw,34px);color:#F2EDE1;font-variant-numeric:tabular-nums}
+  .hero-proof > div{padding:30px 0;display:flex;align-items:baseline;gap:14px}
+  .hero-proof > div + div{padding-left:36px;border-left:1px solid var(--line)}
+  .hero-proof .v{font-family:'Fraunces',serif;font-size:clamp(24px,2.6vw,34px);color:var(--ink);font-variant-numeric:tabular-nums;transition:color var(--theme-fade) ease}
   .hero-proof .v em{color:var(--accent);font-size:.75em}
-  .hero-proof .k{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#9AA396;font-weight:500;line-height:1.5}
+  .hero-proof .k{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:500;line-height:1.5;transition:color var(--theme-fade) ease}
   @media (max-width:840px){
     .hero{padding:0 22px}
     .hero-content{padding-top:15vh}
     .hero-eyebrow{margin-bottom:24px}
     .hero h1{font-size:clamp(72px,19vw,120px);margin-bottom:28px}
-    .hero-lede{padding-bottom:38px;gap:28px}
+    .hero-lede{padding-bottom:56px;gap:28px}
     .hero-lede p{font-size:16px}
     .hero-proof{grid-template-columns:1fr}
-    .hero-proof > div + div{padding-left:0;border-left:none;border-top:1px solid rgba(237,231,218,.12)}
+    .hero-proof > div + div{padding-left:0;border-left:none;border-top:1px solid var(--line)}
     .hero-proof > div{padding:15px 0}
     .hero-proof .v{font-size:24px}
   }
@@ -299,8 +302,8 @@
 
   /* ================= THESIS INTERSTITIAL ================= */
   .thesis{height:78vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:0 48px}
-  .thesis-bg{position:absolute;inset:-12% 0;background:url('assets/trading-forest.jpg') center 24%/cover no-repeat;will-change:transform}
-  .thesis::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,20,16,.92), rgba(13,20,16,.55) 50%, rgba(13,20,16,.94))}
+  .thesis-bg{position:absolute;inset:-12% 0;background:url('assets/thesis-night.jpg') center 38%/cover no-repeat;will-change:transform}
+  .thesis::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,20,16,.82), rgba(13,20,16,.38) 50%, rgba(13,20,16,.9))}
   .thesis-inner{position:relative;z-index:2;text-align:center;max-width:1100px}
   .thesis-inner .label{color:#C9C3B4;margin-bottom:30px;display:block}
   .thesis-inner h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,5vw,72px);line-height:1.12;letter-spacing:-.012em;color:#F2EDE1}
@@ -320,6 +323,7 @@
   }
   @media (max-width:600px){.path{padding:40px 26px 34px}}
   .path:hover{border-color:color-mix(in srgb, var(--accent) 55%, transparent);transform:translateY(-6px);box-shadow:0 40px 80px -44px rgba(0,0,0,.55)}
+  .path-primary{border-color:color-mix(in srgb, var(--accent) 38%, transparent);background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 5%, var(--surface)), var(--surface) 40%)}
   .path .glow{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .6s;background:radial-gradient(480px circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 65%)}
   .path:hover .glow{opacity:1}
   .path > *{position:relative}
@@ -548,13 +552,15 @@
       </div>
     </div>
   </div>
+</header>
 
+<div class="proof-band" data-section-theme="dark">
   <div class="hero-proof">
+    <div><span class="v"><span data-countup data-prefix="$" data-target="500" data-suffix="k">$500k</span><em>+</em></span><span class="k">Generated for<br>private clients</span></div>
     <div><span class="v"><span data-countup data-target="4.9" data-decimals="1">4.9</span><em>★</em></span><span class="k">Member rating,<br>Data's Alpha Circle</span></div>
     <div><span class="v"><span data-countup data-target="300">300</span><em>+</em></span><span class="k">Members trading<br>together</span></div>
-    <div><span class="v"><span data-countup data-prefix="$" data-target="500" data-suffix="k">$500k</span><em>+</em></span><span class="k">Generated for<br>private clients</span></div>
   </div>
-</header>
+</div>
 
 <!-- ================= CHAPTER I — THE APPROACH ================= -->
 <section id="about" data-section-theme="light">
@@ -567,12 +573,12 @@
 
     <div class="about-grid">
       <div class="img-frame">
-        <img src="assets/portrait-lake.jpg" alt="Ed Cooper" />
+        <img src="assets/portrait-work.jpg" alt="Ed Cooper working" />
       </div>
       <div class="about-copy reveal">
         <div class="big">Trading and investing across markets, <em>and teaching others to do the same.</em></div>
         <p>Most traders only know how to make money when the market's going up. The whole game changes in a bear market, and again when markets go sideways. Learning to operate across all three is what separates <strong>a trader who lasts</strong> from one who doesn't.</p>
-        <p>That's what I teach, and why I do it: trading and investing, done properly, give you <strong>control over your time, where you live, and how you build a life.</strong></p>
+        <p>That's what I teach, and why I do it: trading and investing, done properly, gives you <strong>control over your time, where you live, and how you build a life.</strong></p>
         <div class="about-sign">
           <span class="rule"></span>
           <span>Ed Cooper</span>
@@ -603,7 +609,7 @@
 
     <div class="paths">
       <!-- 1:1 Coaching -->
-      <div class="path reveal">
+      <div class="path path-primary reveal">
         <div class="glow"></div>
         <span class="path-tag">Private · By application</span>
         <h3>1-on-1 <em>Trading Coaching</em></h3>
